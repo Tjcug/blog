@@ -108,17 +108,17 @@
 
 
 
-<meta name="description" content="Linux服务器管理第一章简介与分类1-1系统运行级别 0关机 1单用户模式 2不完全的命令行模式 3完全的命令行模式 4系统保留 5图像模式 6重启动  修改系统默认允许级别方法 vim /etc/inittab系统开机后直接进入哪个运行级别 服务的分类第二章RPM包服务管理">
+<meta name="description" content="Linux服务器管理第一章简介与分类1-1系统运行级别 0关机 1单用户模式 2不完全的命令行模式 3完全的命令行模式 4系统保留 5图像模式 6重启动  修改系统默认允许级别方法 vim /etc/inittab系统开机后直接进入哪个运行级别 1-2服务的分类 rpm包默认安装的服务  独立的服务 基于xinetd的服务   源码包安装的服务  1-3启动与自启动 服务启动：就是在当前系统中让服">
 <meta name="keywords" content="-linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux服务管理">
 <meta property="og:url" content="https://tjcug.github.io/2017/04/25/Linux服务管理/index.html">
 <meta property="og:site_name" content="Master.TJ 的个人博客">
-<meta property="og:description" content="Linux服务器管理第一章简介与分类1-1系统运行级别 0关机 1单用户模式 2不完全的命令行模式 3完全的命令行模式 4系统保留 5图像模式 6重启动  修改系统默认允许级别方法 vim /etc/inittab系统开机后直接进入哪个运行级别 服务的分类第二章RPM包服务管理">
-<meta property="og:updated_time" content="2017-04-25T11:43:46.389Z">
+<meta property="og:description" content="Linux服务器管理第一章简介与分类1-1系统运行级别 0关机 1单用户模式 2不完全的命令行模式 3完全的命令行模式 4系统保留 5图像模式 6重启动  修改系统默认允许级别方法 vim /etc/inittab系统开机后直接进入哪个运行级别 1-2服务的分类 rpm包默认安装的服务  独立的服务 基于xinetd的服务   源码包安装的服务  1-3启动与自启动 服务启动：就是在当前系统中让服">
+<meta property="og:updated_time" content="2017-04-25T12:33:39.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux服务管理">
-<meta name="twitter:description" content="Linux服务器管理第一章简介与分类1-1系统运行级别 0关机 1单用户模式 2不完全的命令行模式 3完全的命令行模式 4系统保留 5图像模式 6重启动  修改系统默认允许级别方法 vim /etc/inittab系统开机后直接进入哪个运行级别 服务的分类第二章RPM包服务管理">
+<meta name="twitter:description" content="Linux服务器管理第一章简介与分类1-1系统运行级别 0关机 1单用户模式 2不完全的命令行模式 3完全的命令行模式 4系统保留 5图像模式 6重启动  修改系统默认允许级别方法 vim /etc/inittab系统开机后直接进入哪个运行级别 1-2服务的分类 rpm包默认安装的服务  独立的服务 基于xinetd的服务   源码包安装的服务  1-3启动与自启动 服务启动：就是在当前系统中让服">
 
 
 
@@ -459,7 +459,37 @@
 <li>6重启动</li>
 </ul>
 <p>修改系统默认允许级别方法 vim /etc/inittab<br>系统开机后直接进入哪个运行级别</p>
-<h3 id="服务的分类"><a href="#服务的分类" class="headerlink" title="服务的分类"></a>服务的分类</h3><h2 id="第二章RPM包服务管理"><a href="#第二章RPM包服务管理" class="headerlink" title="第二章RPM包服务管理"></a>第二章RPM包服务管理</h2>
+<h3 id="1-2服务的分类"><a href="#1-2服务的分类" class="headerlink" title="1-2服务的分类"></a>1-2服务的分类</h3><ul>
+<li>rpm包默认安装的服务 <ul>
+<li>独立的服务</li>
+<li>基于xinetd的服务</li>
+</ul>
+</li>
+<li>源码包安装的服务</li>
+</ul>
+<h3 id="1-3启动与自启动"><a href="#1-3启动与自启动" class="headerlink" title="1-3启动与自启动"></a>1-3启动与自启动</h3><ul>
+<li>服务启动：就是在当前系统中让服务运行，并且提供功能</li>
+<li>服务自启动：自启动就是指在系统开机或者重启动以后，随着系统启动而自启动服务。</li>
+</ul>
+<h3 id="1-4查看系统中启动的服务"><a href="#1-4查看系统中启动的服务" class="headerlink" title="1-4查看系统中启动的服务"></a>1-4查看系统中启动的服务</h3><ul>
+<li>RPM包安装的服务<ul>
+<li>chkconfig –list</li>
+<li>查看服务启动状态，可以看到所有RPM包安装的服务.RPM包安装位置在/etc/init/init.d 目录下</li>
+</ul>
+</li>
+<li>源码包安装的服务<ul>
+<li>查看服务安装的位置一般在 /usr/local 目录下</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-5-服务和端口"><a href="#1-5-服务和端口" class="headerlink" title="1-5 服务和端口"></a>1-5 服务和端口</h3><ul>
+<li>端口和服务相对应</li>
+<li><p>查询系统中开启的服务</p>
+<p>  netstat -tlunp</p>
+</li>
+</ul>
+<hr>
+<h2 id="第二章RPM包服务管理"><a href="#第二章RPM包服务管理" class="headerlink" title="第二章RPM包服务管理"></a>第二章RPM包服务管理</h2>
       
     </div>
 
@@ -699,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux服务器管理"><span class="nav-number">1.</span> <span class="nav-text">Linux服务器管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章简介与分类"><span class="nav-number">1.1.</span> <span class="nav-text">第一章简介与分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1系统运行级别"><span class="nav-number">1.1.1.</span> <span class="nav-text">1-1系统运行级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务的分类"><span class="nav-number">1.1.2.</span> <span class="nav-text">服务的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章RPM包服务管理"><span class="nav-number">1.2.</span> <span class="nav-text">第二章RPM包服务管理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux服务器管理"><span class="nav-number">1.</span> <span class="nav-text">Linux服务器管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章简介与分类"><span class="nav-number">1.1.</span> <span class="nav-text">第一章简介与分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1系统运行级别"><span class="nav-number">1.1.1.</span> <span class="nav-text">1-1系统运行级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2服务的分类"><span class="nav-number">1.1.2.</span> <span class="nav-text">1-2服务的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3启动与自启动"><span class="nav-number">1.1.3.</span> <span class="nav-text">1-3启动与自启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4查看系统中启动的服务"><span class="nav-number">1.1.4.</span> <span class="nav-text">1-4查看系统中启动的服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-服务和端口"><span class="nav-number">1.1.5.</span> <span class="nav-text">1-5 服务和端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章RPM包服务管理"><span class="nav-number">1.2.</span> <span class="nav-text">第二章RPM包服务管理</span></a></li></ol></li></ol></div>
             
 
           </div>
