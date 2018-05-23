@@ -3,6 +3,20 @@
   
     
     <entry>
+      <title><![CDATA[Design Guidelines for High Performance RDMA Systems]]></title>
+      <url>%2Fblog%2F2018%2F05%2F23%2FDesign-Guidelines-for-High-Performance-RDMA-Systems%2F</url>
+      <content type="text"><![CDATA[Design Guidelines for High Performance RDMA SystemsIntroduction随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著影响RDMA的相对性能。 首先这篇文章的第一个贡献就是它提供了由一组开源的度量工具支持的指导方针，用于评估和优化在使用RDMA NICs时影响端到端吞吐量的最重要的系统因素。对于每个指导方针。作者就如何确定本指南是否相关提供了深入的见解，并讨论了使用NIC的哪些模式最有可能缓解问题。 其次，作者通过第三代RDMA硬件将这些指南应用于微基准和实际系统来评估这些指南的功效。 Background图显示了RDMA Cluster硬件组件。其中NIC网卡连接的一个或则多个端口连接到PCIe控制器且连接到多核CPU的服务器上。PCIe恐控制器用来接受NIC网卡的PCIe请求到L3 cache中。在现代的Intel 服务器架构中，这个L3 Cache 提供PCIe 事件控制器。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>%2Fblog%2F2017%2F09%2F25%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[Linux服务管理]]></title>
       <url>%2Fblog%2F2017%2F04%2F25%2FLinux%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%2F</url>
       <content type="text"><![CDATA[Linux服务器管理第一章简介与分类1-1系统运行级别 0关机 1单用户模式 2不完全的命令行模式 3完全的命令行模式 4系统保留 5图像模式 6重启动 修改系统默认允许级别方法 vim /etc/inittab系统开机后直接进入哪个运行级别 1-2服务的分类 rpm包默认安装的服务 独立的服务 基于xinetd的服务 源码包安装的服务 1-3启动与自启动 服务启动：就是在当前系统中让服务运行，并且提供功能 服务自启动：自启动就是指在系统开机或者重启动以后，随着系统启动而自启动服务。 1-4查看系统中启动的服务 RPM包安装的服务 chkconfig –list 查看服务启动状态，可以看到所有RPM包安装的服务.RPM包安装位置在/etc/init/init.d 目录下 源码包安装的服务 查看服务安装的位置一般在 /usr/local 目录下 1-5 服务和端口 端口和服务相对应 查询系统中开启的服务 netstat -tlunp 第二章RPM包服务管理]]></content>
@@ -13,13 +27,6 @@
       <title><![CDATA[Hexo 强大的博客框架]]></title>
       <url>%2Fblog%2F2017%2F04%2F25%2FHexo-%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%2F</url>
       <content type="text"><![CDATA[正文: 什么是Hexo Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 安装 安装 Hexo 只需几分钟时间，若您在安装过程中遇到问题或无法找到解决方式，请提交问题，我会尽力解决您的问题。]]></content>
-    </entry>
-
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>%2Fblog%2F2017%2F04%2F24%2Fhello-world%2F</url>
-      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
     </entry>
 
     
