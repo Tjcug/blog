@@ -92,7 +92,7 @@
 <link href="/blog/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="RDMA," />
+  <meta name="keywords" content="bigdata, blog" />
 
 
 
@@ -108,20 +108,21 @@
 
 
 
-<meta name="description" content="Introduction随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著">
-<meta name="keywords" content="RDMA">
+<meta name="description" content="ABSTRACT场景：社交网络，城市监控和市场馈送处理等应用需要有状态的流式查询，状态流查询不仅要查询流式数据，还要查询存储的数据来及时提取有用的信息。实时流数据提供的有用信息，也需要持续不断地整合到存储的数据中，以便为上述和未来提供查询服务。然而，先前的流式处理系统或者侧重于流计算，或者不是有状态的，或者不能提供低延迟和高吞吐量来处理快速发展的Linked数据，并且能够支持不断增加的查询并发性。">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" Design Guidelines for High Performance RDMA Systems">
-<meta property="og:url" content="https://tjcug.github.io/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/index.html">
+<meta property="og:title" content="Sub-millisecond Stateful Stream Querying over Fast-evolving Linked Data">
+<meta property="og:url" content="https://tjcug.github.io/2018/05/25/Sub-millisecond-Stateful-Stream-Querying-over-Fast-evolving-Linked-Data/index.html">
 <meta property="og:site_name" content="Master.TJ 的个人博客">
-<meta property="og:description" content="Introduction随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著">
+<meta property="og:description" content="ABSTRACT场景：社交网络，城市监控和市场馈送处理等应用需要有状态的流式查询，状态流查询不仅要查询流式数据，还要查询存储的数据来及时提取有用的信息。实时流数据提供的有用信息，也需要持续不断地整合到存储的数据中，以便为上述和未来提供查询服务。然而，先前的流式处理系统或者侧重于流计算，或者不是有状态的，或者不能提供低延迟和高吞吐量来处理快速发展的Linked数据，并且能够支持不断增加的查询并发性。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://tjcug.github.io/blog/images/pasted-1.png">
-<meta property="og:updated_time" content="2018-05-23T07:58:49.182Z">
+<meta property="og:image" content="https://tjcug.github.io/blog/images/pasted-16.png">
+<meta property="og:image" content="https://tjcug.github.io/blog/images/pasted-17.png">
+<meta property="og:image" content="https://tjcug.github.io/blog/images/pasted-18.png">
+<meta property="og:updated_time" content="2018-05-25T08:04:12.018Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" Design Guidelines for High Performance RDMA Systems">
-<meta name="twitter:description" content="Introduction随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著">
-<meta name="twitter:image" content="https://tjcug.github.io/blog/images/pasted-1.png">
+<meta name="twitter:title" content="Sub-millisecond Stateful Stream Querying over Fast-evolving Linked Data">
+<meta name="twitter:description" content="ABSTRACT场景：社交网络，城市监控和市场馈送处理等应用需要有状态的流式查询，状态流查询不仅要查询流式数据，还要查询存储的数据来及时提取有用的信息。实时流数据提供的有用信息，也需要持续不断地整合到存储的数据中，以便为上述和未来提供查询服务。然而，先前的流式处理系统或者侧重于流计算，或者不是有状态的，或者不能提供低延迟和高吞吐量来处理快速发展的Linked数据，并且能够支持不断增加的查询并发性。">
+<meta name="twitter:image" content="https://tjcug.github.io/blog/images/pasted-16.png">
 
 
 
@@ -149,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://tjcug.github.io/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/"/>
+  <link rel="canonical" href="https://tjcug.github.io/2018/05/25/Sub-millisecond-Stateful-Stream-Querying-over-Fast-evolving-Linked-Data/"/>
 
 
 
 
 
-  <title> Design Guidelines for High Performance RDMA Systems | Master.TJ 的个人博客</title>
+  <title>Sub-millisecond Stateful Stream Querying over Fast-evolving Linked Data | Master.TJ 的个人博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -338,7 +339,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tjcug.github.io/blog/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/">
+    <link itemprop="mainEntityOfPage" href="https://tjcug.github.io/blog/2018/05/25/Sub-millisecond-Stateful-Stream-Querying-over-Fast-evolving-Linked-Data/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Master.TJ">
@@ -359,7 +360,7 @@
             
             
               
-                 Design Guidelines for High Performance RDMA Systems
+                Sub-millisecond Stateful Stream Querying over Fast-evolving Linked Data
               
             
           </h1>
@@ -374,8 +375,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T11:11:00+08:00">
-                2018-05-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T16:01:00+08:00">
+                2018-05-25
               </time>
             
 
@@ -404,17 +405,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/研究生论文研读/RDMA论文研读/" itemprop="url" rel="index">
-                    <span itemprop="name">RDMA论文研读</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -426,7 +416,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/blog/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/blog/2018/05/25/Sub-millisecond-Stateful-Stream-Querying-over-Fast-evolving-Linked-Data/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -435,7 +425,7 @@
 
           
           
-             <span id="/blog/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/" class="leancloud_visitors" data-flag-title=" Design Guidelines for High Performance RDMA Systems">
+             <span id="/blog/2018/05/25/Sub-millisecond-Stateful-Stream-Querying-over-Fast-evolving-Linked-Data/" class="leancloud_visitors" data-flag-title="Sub-millisecond Stateful Stream Querying over Fast-evolving Linked Data">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -463,14 +453,25 @@
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。<br><br>找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著影响RDMA的相对性能。<br></p>
-<ol>
-<li>首先这篇文章的第一个贡献就是它提供了由一组开源的度量工具支持的指导方针，用于评估和优化在使用RDMA NICs时影响端到端吞吐量的最重要的系统因素。对于每个指导方针。作者就如何确定本指南是否相关提供了深入的见解，并讨论了使用NIC的哪些模式最有可能缓解问题。</li>
-<li>其次，作者通过第三代RDMA硬件将这些指南应用于微基准和实际系统来评估这些指南的功效。</li>
+        <h3 id="ABSTRACT"><a href="#ABSTRACT" class="headerlink" title="ABSTRACT"></a>ABSTRACT</h3><p>场景：社交网络，城市监控和市场馈送处理等应用需要有状态的流式查询，状态流查询不仅要查询流式数据，还要查询存储的数据来及时提取有用的信息。实时流数据提供的有用信息，也需要持续不断地整合到存储的数据中，以便为上述和未来提供查询服务。<br>然而，先前的流式处理系统或者侧重于流计算，或者不是有状态的，或者不能提供低延迟和高吞吐量来处理快速发展的Linked数据，并且能够支持不断增加的查询并发性。<br>Wukong + S采用集成设计，将流处理和持久化存储相结合，实现高效的状态共享，避免了传统复合设计（如Storm / Heron + Wukong）中的跨系统成本和次优查询性能。 Wukong + S使用混合存储来区分管理持久的数据和瞬时数据，并提供有效的流索引和本地分区，以便快速访问流数据。 Wukong + S进一步提供分散的矢量时间戳和有界的快照标量化，以节省内存使用量的节点和大量查询。</p>
+<h3 id="INTRODUCTION："><a href="#INTRODUCTION：" class="headerlink" title="INTRODUCTION："></a>INTRODUCTION：</h3><h4 id="问题提出场景："><a href="#问题提出场景：" class="headerlink" title="问题提出场景："></a>问题提出场景：</h4><p>随着流数据和存储数据量的不断增加，及时查询有用的信息十分重要。对于公共数据集合数据流，可能有大量的用户不同的数据流查询请求，因此需要支持高并发的查询。而且流数据通常包含巨大的有用信息， 这样的数据应该被一致地和立即地整合到存储系统，以用于将来的连续查询。<br>现有的工作：然而目前现有的系统对于正在变化的数据集的侧重点在于流计算。流计算和流查询不同的是 前者通常倾向于对大部分流数据进行序列化计算，而后者侧重于对流和存储数据的特定集合的并发查询。大多数先前的系统也没有集成流数据为了并发的查询中，或者不查询持久化存储的历史数据来获得基础知识，因此是无状态的。 尽管大多数流处理数据库都明确支持语义和SQL接口，但是他们在快速演化的Linked 数据下，当面临大量并发的查询请求下，由于高昂的Join操作开销和一些ACID的语义，他们的查询性能是低效的。</p>
+<h4 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h4><ol>
+<li>Wukong-S为了尊重数据本地化并最大限度地减少数据传输，它使用由基于时间的临时存储和连续持久化存储组成的混合存储，为正在到来的数据和持久化的数据提供不同的存储管理。</li>
+<li>Wukong + S提供了流数据的快速访问流索引。流数据通过局部感知分区进行分片，其中一些流索引在节点间动态复制。这节省了查询成本并提供高效的负载平衡。</li>
+<li>为了在多个不同规模的流数据上提供一致的流查询，Wukong + S使用分散的矢量时间戳来推导出最近一致性状态的流式数据插入。Wukong + S使用有限的标量化方案将矢量时间戳投影到标量快照数量中，通过协调多个流的更新到底层持久存储区。这样的设计在有效的内存使用情况下扩展了Wukong + S节点和大量查询。</li>
 </ol>
-<hr>
-<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p><img src="\blog\images\pasted-1.png" alt="upload successful"><br><br>图显示了RDMA Cluster硬件组件。其中NIC网卡连接的一个或则多个端口连接到PCIe控制器且连接到多核CPU的服务器上。PCIe恐控制器用来接受NIC网卡的PCIe请求到L3 cache中。在现代的Intel 服务器架构中，这个L3 Cache 提供PCIe 事件控制器。</p>
-<h3 id="PCI-Express"><a href="#PCI-Express" class="headerlink" title="PCI Express"></a>PCI Express</h3>
+<h3 id="MOTIVATION"><a href="#MOTIVATION" class="headerlink" title="MOTIVATION"></a>MOTIVATION</h3><p>根据工作负载特性，提出了一条流旨在支持大量的查询系统(连续的和一次性的)对流和存储的查询数据。有几种独特的需求可以区分来自其他流系统的流查询系统。</p>
+<p><img src="\blog\images\pasted-16.png" alt="upload successful"></p>
+<p><img src="\blog\images\pasted-17.png" alt="upload successful"></p>
+<h3 id="APPROACH-ANN-OVERVIEW"><a href="#APPROACH-ANN-OVERVIEW" class="headerlink" title="APPROACH ANN OVERVIEW"></a>APPROACH ANN OVERVIEW</h3><p><img src="\blog\images\pasted-18.png" alt="upload successful"></p>
+<p>目前存在的系统采用的是讲流处理系统和以查询为主导的存储系统简单结合。简单的组合设计会造成性能低效的结果。比如讲Esper和Apahe Jena组合</p>
+<ol>
+<li>Issue1. Cross-system Cost</li>
+<li>Issue2. Sub-optimal query plan </li>
+<li>Issue3. Limited scalability</li>
+</ol>
+<p>Wukong+S做的就是一个整体设计。Wukong+ S使用了一个内置的设计，目标是对流和存储数据进行连续和一次性的查询。关键的设计原则就是对待持久化的存储作为关键的解决方案</p>
+
       
     </div>
 
@@ -518,12 +519,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/blog/tags/RDMA/" rel="tag"># RDMA</a>
-          
-        </div>
-      
 
       
         
@@ -533,8 +528,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/09/25/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/blog/2018/05/25/Bipartite-graph-二分图/" rel="next" title="Bipartite_graph 二分图">
+                <i class="fa fa-chevron-left"></i> Bipartite_graph 二分图
               </a>
             
           </div>
@@ -542,10 +537,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/05/23/PCIE和PCI-计算机总线/" rel="prev" title="PCIE和PCI 计算机总线">
-                PCIE和PCI 计算机总线 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -714,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">2.</span> <span class="nav-text">Background</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCI-Express"><span class="nav-number">2.1.</span> <span class="nav-text">PCI Express</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ABSTRACT"><span class="nav-number">1.</span> <span class="nav-text">ABSTRACT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INTRODUCTION："><span class="nav-number">2.</span> <span class="nav-text">INTRODUCTION：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题提出场景："><span class="nav-number">2.1.</span> <span class="nav-text">问题提出场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案："><span class="nav-number">2.2.</span> <span class="nav-text">解决方案：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOTIVATION"><span class="nav-number">3.</span> <span class="nav-text">MOTIVATION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APPROACH-ANN-OVERVIEW"><span class="nav-number">4.</span> <span class="nav-text">APPROACH ANN OVERVIEW</span></a></li></ol></div>
             
 
           </div>

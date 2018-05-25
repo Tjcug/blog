@@ -92,7 +92,7 @@
 <link href="/blog/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="RDMA," />
+  <meta name="keywords" content="计算机硬件," />
 
 
 
@@ -108,20 +108,18 @@
 
 
 
-<meta name="description" content="Introduction随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著">
-<meta name="keywords" content="RDMA">
+<meta name="description" content="MMIO(Memory mapping I/O)即内存映射I/O，它是PCI规范的一部分，I/O设备被放置在内存空间而不是I/O空间。从处理器的角度看，内存映射I/O后系统设备访问起来和内存一样。这样访问AGP/PCI-E显卡上的帧缓存，BIOS，PCI设备就可以使用读写内存一样的汇编指令完成，简化了程序设计的难度和接口的复杂性。 基本概念MMIO(Memory mapping I/O)即内存映射">
+<meta name="keywords" content="计算机硬件">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" Design Guidelines for High Performance RDMA Systems">
-<meta property="og:url" content="https://tjcug.github.io/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/index.html">
+<meta property="og:title" content="内存映射IO (MMIO)">
+<meta property="og:url" content="https://tjcug.github.io/2018/05/25/内存映射IO-MMIO/index.html">
 <meta property="og:site_name" content="Master.TJ 的个人博客">
-<meta property="og:description" content="Introduction随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著">
+<meta property="og:description" content="MMIO(Memory mapping I/O)即内存映射I/O，它是PCI规范的一部分，I/O设备被放置在内存空间而不是I/O空间。从处理器的角度看，内存映射I/O后系统设备访问起来和内存一样。这样访问AGP/PCI-E显卡上的帧缓存，BIOS，PCI设备就可以使用读写内存一样的汇编指令完成，简化了程序设计的难度和接口的复杂性。 基本概念MMIO(Memory mapping I/O)即内存映射">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://tjcug.github.io/blog/images/pasted-1.png">
-<meta property="og:updated_time" content="2018-05-23T07:58:49.182Z">
+<meta property="og:updated_time" content="2018-05-25T07:46:58.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" Design Guidelines for High Performance RDMA Systems">
-<meta name="twitter:description" content="Introduction随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著">
-<meta name="twitter:image" content="https://tjcug.github.io/blog/images/pasted-1.png">
+<meta name="twitter:title" content="内存映射IO (MMIO)">
+<meta name="twitter:description" content="MMIO(Memory mapping I/O)即内存映射I/O，它是PCI规范的一部分，I/O设备被放置在内存空间而不是I/O空间。从处理器的角度看，内存映射I/O后系统设备访问起来和内存一样。这样访问AGP/PCI-E显卡上的帧缓存，BIOS，PCI设备就可以使用读写内存一样的汇编指令完成，简化了程序设计的难度和接口的复杂性。 基本概念MMIO(Memory mapping I/O)即内存映射">
 
 
 
@@ -149,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="https://tjcug.github.io/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/"/>
+  <link rel="canonical" href="https://tjcug.github.io/2018/05/25/内存映射IO-MMIO/"/>
 
 
 
 
 
-  <title> Design Guidelines for High Performance RDMA Systems | Master.TJ 的个人博客</title>
+  <title>内存映射IO (MMIO) | Master.TJ 的个人博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -338,7 +336,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tjcug.github.io/blog/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/">
+    <link itemprop="mainEntityOfPage" href="https://tjcug.github.io/blog/2018/05/25/内存映射IO-MMIO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Master.TJ">
@@ -359,7 +357,7 @@
             
             
               
-                 Design Guidelines for High Performance RDMA Systems
+                内存映射IO (MMIO)
               
             
           </h1>
@@ -374,8 +372,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T11:11:00+08:00">
-                2018-05-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T15:46:00+08:00">
+                2018-05-25
               </time>
             
 
@@ -397,19 +395,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/研究生论文研读/" itemprop="url" rel="index">
-                    <span itemprop="name">研究生论文研读</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/研究生论文研读/RDMA论文研读/" itemprop="url" rel="index">
-                    <span itemprop="name">RDMA论文研读</span>
+                  <a href="/blog/categories/计算机硬件/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机硬件</span>
                   </a>
                 </span>
 
@@ -426,7 +413,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/blog/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/blog/2018/05/25/内存映射IO-MMIO/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -435,7 +422,7 @@
 
           
           
-             <span id="/blog/2018/05/23/Design-Guidelines-for-High-Performance-RDMA-Systems/" class="leancloud_visitors" data-flag-title=" Design Guidelines for High Performance RDMA Systems">
+             <span id="/blog/2018/05/25/内存映射IO-MMIO/" class="leancloud_visitors" data-flag-title="内存映射IO (MMIO)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -463,14 +450,10 @@
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>随着RDMA技术的发展，RDMA技术越来越被数据中心采用。尽管RDMA的新知名度，使用他们的先进功能以达到最佳效果仍然是软件设计师的挑战。<br><br>找到RDMA功能与应用程序之间的有效匹配非常重要。没有一种方法能够适合所有的应用场景，比如说RDMA一个参数的最佳和最差选择在它们的总吞吐量中变化了70倍，并且它们消耗的主机CPU的量变化了3.2倍。在不同的设计中，应用需求的小的变化显著影响RDMA的相对性能。<br></p>
-<ol>
-<li>首先这篇文章的第一个贡献就是它提供了由一组开源的度量工具支持的指导方针，用于评估和优化在使用RDMA NICs时影响端到端吞吐量的最重要的系统因素。对于每个指导方针。作者就如何确定本指南是否相关提供了深入的见解，并讨论了使用NIC的哪些模式最有可能缓解问题。</li>
-<li>其次，作者通过第三代RDMA硬件将这些指南应用于微基准和实际系统来评估这些指南的功效。</li>
-</ol>
-<hr>
-<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p><img src="\blog\images\pasted-1.png" alt="upload successful"><br><br>图显示了RDMA Cluster硬件组件。其中NIC网卡连接的一个或则多个端口连接到PCIe控制器且连接到多核CPU的服务器上。PCIe恐控制器用来接受NIC网卡的PCIe请求到L3 cache中。在现代的Intel 服务器架构中，这个L3 Cache 提供PCIe 事件控制器。</p>
-<h3 id="PCI-Express"><a href="#PCI-Express" class="headerlink" title="PCI Express"></a>PCI Express</h3>
+        <p>MMIO(Memory mapping I/O)即内存映射I/O，它是PCI规范的一部分，I/O设备被放置在内存空间而不是I/O空间。从处理器的角度看，内存映射I/O后系统设备访问起来和内存一样。这样访问AGP/PCI-E显卡上的帧缓存，BIOS，PCI设备就可以使用读写内存一样的汇编指令完成，简化了程序设计的难度和接口的复杂性。</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>MMIO(Memory mapping I/O)即内存映射I/O，它是PCI规范的一部分，I/O设备被放置在内存空间而不是I/O空间。从处理器的角度看，内存映射I/O后系统设备访问起来和内存一样。这样访问AGP/PCI-E显卡上的帧缓存，BIOS，PCI设备就可以使用读写内存一样的汇编指令完成，简化了程序设计的难度和接口的复杂性。I/O作为CPU和外设交流的一个渠道，主要分为两种，一种是Port I/O，一种是MMIO(Memory mapping I/O)。（来自百度百科）<br>简而言之，MMIO就是通过将外围设备映射到内存空间，便于CPU的访问。I/O作为CPU和外设交流的一个渠道，主要分为两种，一种是Port I/O，一种是MMIO(Memory mapping I/O)。前者就是我们常说的I/O端口，它实际上的应该被称为I/O地址空间。<br>小概念：<br>32位操作系统，32bit的处理器，拥有32bit寻址能力，即可访问2^32=4G的物理地址，那么就具有4G内存的识别能力。<br>物理地址：并不是指物理内存的地址，而是指处理器和系统内存之间所用到的地址，可以理解为CPU最为方便访问的地址（有别于我们之前所知道的物理地址的定义：段地址*16+偏移地址），而这一个内存并不独属于物理内存，而被分成了很多部分，物理内存当然也能够占用其中的一部分。</p>
+<h3 id="PortIO和MMIO-的主要区别"><a href="#PortIO和MMIO-的主要区别" class="headerlink" title="PortIO和MMIO 的主要区别"></a>PortIO和MMIO 的主要区别</h3><p>1）前者不占用CPU的物理地址空间，后者占有（这是对x86架构说的，一些架构，如IA64，port I/O占用物理地址空间）。<br>2）前者是顺序访问。也就是说在一条I/O指令完成前，下一条指令不会执行。例如通过Port I/O对设备发起了操作，造成了设备寄存器状态变化，这个变化在下一条指令执行前生效。uncache的MMIO通过uncahce memory的特性保证顺序性。<br>3）使用方式不同<br>由于port I/O有独立的64K I/O地址空间，但CPU的地址线只有一套，所以必须区分地址属于物理地址空间还是I/O地址空间。</p>
+
       
     </div>
 
@@ -520,7 +503,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/RDMA/" rel="tag"># RDMA</a>
+            <a href="/blog/tags/计算机硬件/" rel="tag"># 计算机硬件</a>
           
         </div>
       
@@ -533,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/09/25/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/blog/2018/05/23/PCIE和PCI-计算机总线/" rel="next" title="PCIE和PCI 计算机总线">
+                <i class="fa fa-chevron-left"></i> PCIE和PCI 计算机总线
               </a>
             
           </div>
@@ -543,8 +526,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018/05/23/PCIE和PCI-计算机总线/" rel="prev" title="PCIE和PCI 计算机总线">
-                PCIE和PCI 计算机总线 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018/05/25/RDMA技术详解/" rel="prev" title="RDMA技术详解">
+                RDMA技术详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -714,7 +697,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">2.</span> <span class="nav-text">Background</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCI-Express"><span class="nav-number">2.1.</span> <span class="nav-text">PCI Express</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PortIO和MMIO-的主要区别"><span class="nav-number">2.</span> <span class="nav-text">PortIO和MMIO 的主要区别</span></a></li></ol></div>
             
 
           </div>
